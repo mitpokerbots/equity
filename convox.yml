@@ -1,0 +1,10 @@
+services:
+  web:
+    command: gunicorn equity:app -w 4 -b 0.0.0.0:8000
+    domain: equity.pokerbots.org
+    environment:
+      - PRODUCTION=True
+    port: 8000
+    scale:
+      cpu: 512
+      memory: 512

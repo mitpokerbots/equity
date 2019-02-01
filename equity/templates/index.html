@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Pokerbots Equity</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <div class="container">
+
+      <h1>Pokerbots Equity Calculator</h1>
+      <p class="lead">Quickly calculate equity of a hand in poker.</p>
+
+      {% if result == 'success' %}
+        <table class='table table-striped'>
+          <thead class='thead-dark'>
+            <tr>
+              <th>Hero Hole</th>
+              <th>Villian Hole</th>
+              <th>Board</th>
+              <th>Discard</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ hole }}</td>
+              <td>{{ opponent }}</td>
+              <td>{{ board }}</td>
+              <td>{{ discard }}</td>
+            </tr>
+            <tr>
+              <td>{{ evs[0] }}</td>
+              <td>{{ evs[1] }}</td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      {% elif result == 'fail' %}
+        <p>Failed to calculate equity. Check your arguments.</p>
+        <table class='table table-striped'>
+          <thead class='thead-dark'>
+            <tr>
+              <th>Hero Hole</th>
+              <th>Villian Hole</th>
+              <th>Board</th>
+              <th>Discard</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ hole }}</td>
+              <td>{{ opponent }}</td>
+              <td>{{ board }}</td>
+              <td>{{ discard }}</td>
+            </tr>
+          </tbody>
+        </table>
+      {% endif %}
+      <h3>Calculate</h3>
+      <form method='POST'>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Hero hole cards/ranges</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="textHelp" placeholder="AcAs,2h7d" name='hole'>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Villian hole cards/ranges</label>
+          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Ks5h,Td7c" name='opponent'>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Board cards</label>
+          <input type="text" class="form-control" id="exampleInputPassword1" placeholder='8sTsQh' name='board'>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Discarded cards</label>
+          <input type="text" class="form-control" id="exampleInputPassword1" placeholder='' name='discard'>
+        </div>
+        <button type="submit" class="btn btn-primary">Calculate</button>
+      </form>
+
+
+    </div> <!-- /container -->
+  </body>
+</html>
